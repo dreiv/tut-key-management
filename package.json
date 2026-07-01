@@ -3,10 +3,7 @@
   "private": true,
   "workspaces": [
     "client",
-    "servers/sse-dashboard",
-    "servers/streaming-response",
-    "servers/webrtc-signaling",
-    "servers/ws-chat"
+    "server"
   ],
   "packageManager": "npm@11.12.1",
   "scripts": {

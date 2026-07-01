@@ -3,10 +3,144 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>API Key Management Lab</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .grid {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      section {
+        flex: 1;
+        min-width: 300px;
+        border: 1px solid #ccc;
+        padding: 20px;
+      }
+
+      .form-group {
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 6px;
+        box-sizing: border-box;
+        font-family: monospace;
+      }
+
+      button {
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+
+      .button-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      pre {
+        background: #f4f4f4;
+        border: 1px solid #ddd;
+        padding: 10px;
+        overflow-x: auto;
+      }
+
+      .status-badge {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+    </style>
   </head>
   <body>
-    hello world!
+    <header>
+      <h1>🔑 API Key Management Lab</h1>
+      <p>
+        A simple setup to understand API key scopes, storage, and validation.
+      </p>
+    </header>
+
+    <div class="grid">
+      <!-- SECTION A: KEY GENERATOR -->
+      <section aria-labelledby="gen-title">
+        <h2 id="gen-title">1. Generate API Key</h2>
+        <p>Select scopes:</p>
+
+        <div class="form-group">
+          <label>
+            <input
+              type="checkbox"
+              name="scope"
+              value="read:analytics"
+              checked
+            />
+            View Analytics (<code>read:analytics</code>)
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" name="scope" value="read:users" />
+            View User Data (<code>read:users</code>)
+          </label>
+        </div>
+
+        <button id="btn-generate">Mint Token</button>
+
+        <div class="form-group">
+          <label for="generated-key">Your API Key:</label>
+          <input
+            type="text"
+            id="generated-key"
+            readonly
+            placeholder="ak_live_..."
+          />
+          <button id="btn-copy" style="margin-top: 5px">Copy Key</button>
+        </div>
+      </section>
+
+      <!-- SECTION B: API PLAYGROUND -->
+      <section aria-labelledby="play-title">
+        <h2 id="play-title">2. API Playground</h2>
+
+        <div class="form-group">
+          <label for="input-key">Provide API Key:</label>
+          <input
+            type="text"
+            id="input-key"
+            placeholder="Paste your ak_live_ key here"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Trigger Endpoints:</label>
+          <div class="button-row">
+            <button id="btn-fetch-analytics">Fetch Analytics</button>
+            <button id="btn-fetch-users">Fetch Users</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>API Server Response:</label>
+          <div id="status-indicator" class="status-badge">No Request Made</div>
+          <pre id="response-output">
+// Click a button above to send a request...</pre
+          >
+        </div>
+      </section>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
